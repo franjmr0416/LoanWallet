@@ -5,6 +5,7 @@ const app = express();
 //import routes
 const clienteRoutes = require("./routes/cliente");
 const usuarioRoutes = require("./routes/usuario");
+const zonaRoutes = require("./routes/zona");
 
 app.use(express.json());
 
@@ -15,6 +16,7 @@ app.get("/", (req, res) => {
 //configure app
 app.use(clienteRoutes);
 app.use(usuarioRoutes);
+app.use(zonaRoutes);
 
 const PORT = process.env.PORT || 3001;
 
