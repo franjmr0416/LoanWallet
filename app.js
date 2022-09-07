@@ -4,6 +4,7 @@ const app = express();
 
 //import routes
 const clienteRoutes = require("./routes/cliente");
+const usuarioRoutes = require("./routes/usuario");
 
 app.use(express.json());
 
@@ -13,8 +14,9 @@ app.get("/", (req, res) => {
 
 //configure app
 app.use(clienteRoutes);
+app.use(usuarioRoutes);
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 
 app.listen(PORT, () => {
   console.log(`🚀 App started on http://localhost:${PORT}`);
