@@ -11,7 +11,7 @@ Create Database and User (MySQL)
 ```sql
     CREATE DATABASE loan_wallet;
     CREATE USER 'user'@'localhost' IDENTIFIED BY '1234';
-    GRANT ALL PRIVILEGES ON *.loan_wallet TO 'user'@'localhost';
+    GRANT ALL PRIVILEGES ON loan_wallet.* TO 'user'@'localhost';
     FLUSH PRIVILEGES;
 ```
 
