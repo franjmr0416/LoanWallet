@@ -1,13 +1,25 @@
-const express = require('express')
-const {PrismaClient} = require('@prisma/client')
+const express = require("express");
 
-const prisma = new PrismaClient()
-const app = express()
+const app = express();
 
-app.use(express.json())
+//import routes
+const clienteRoutes = require("./routes/cliente");
+const usuarioRoutes = require("./routes/usuario");
+const zonaRoutes = require("./routes/zona");
 
-app.get('/', (req,res)=>{
-    res.send('Hola Mundo')
-})
+app.use(express.json());
 
-app.listen(3000, ()=> console.log(`Server ready at: http://localhost:3000`))
+app.get("/", (req, res) => {
+  res.send("Hola Mundo");
+});
+
+//configure app
+app.use(clienteRoutes);
+app.use(usuarioRoutes);
+app.use(zonaRoutes);
+
+const PORT = process.env.PORT || 3001;
+
+app.listen(PORT, () => {
+  console.log(`🚀 App started on http://localhost:${PORT}`);
+});

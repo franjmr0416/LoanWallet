@@ -25,10 +25,10 @@ model FrecuenciaPagos {
 model Usuarios {
   id          Int           @id @default(autoincrement())
   nombre      String
-  telefono    Int
+  telefono    String
   email       String        @unique
   password    String
-  rol         String
+  admin       Boolean
   comisionado Comisionados?
 }
 
@@ -44,7 +44,7 @@ model Comisionados {
 model Clientes {
   id        Int         @id @default(autoincrement())
   nombre    String
-  telefono  Int
+  telefono  String
   domicilio String
   prestamos Prestamos[]
 }
