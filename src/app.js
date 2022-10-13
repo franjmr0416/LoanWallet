@@ -1,16 +1,16 @@
-const express = require("express");
+const express = require('express');
 
 const app = express();
 
 //import routes
-const clienteRoutes = require("./routes/cliente");
-const usuarioRoutes = require("./routes/usuario");
-const zonaRoutes = require("./routes/zona");
+const clienteRoutes = require('../src/routes/cliente');
+const usuarioRoutes = require('../src/routes/usuario');
+const zonaRoutes = require('../src/routes/zona');
 
 app.use(express.json());
 
-app.get("/", (req, res) => {
-  res.send("Hola Mundo");
+app.get('/', (req, res) => {
+  res.send('Hola Mundo');
 });
 
 //configure app
