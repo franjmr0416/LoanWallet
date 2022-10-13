@@ -18,7 +18,7 @@ app.use(clienteRoutes);
 app.use(usuarioRoutes);
 app.use(zonaRoutes);
 
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
   console.log(`🚀 App started on http://localhost:${PORT}`);
