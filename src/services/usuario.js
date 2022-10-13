@@ -1,27 +1,26 @@
-const { PrismaClient } = require("@prisma/client");
-
+const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
 //id == 0 return all
-const getUsuario = async (req, res) => {
+const getUsuarioService = async (req) => {
   const id = parseInt(req.params.id);
   let usuarios;
 
   id == 0
     ? (usuarios = await prisma.usuarios.findMany())
     : (usuarios = await prisma.usuarios.findUnique({ where: { id: id } }));
-  res.json(usuarios);
+  return usuarios;
 };
 
-const createUsuario = async (req, res) => {
+const createUsuarioService = async (req) => {
   const { nombre, telefono, email, password, admin } = req.body;
   const result = await prisma.usuarios.create({
     data: { nombre, telefono, email, password, admin },
   });
-  res.json(result);
+  return result;
 };
 
-const updateUsuario = async (req, res) => {
+const updateUsuarioService = async (req) => {
   const id = parseInt(req.params.id);
   const { nombre, telefono, email, password, admin } = req.body;
 
@@ -35,18 +34,18 @@ const updateUsuario = async (req, res) => {
       admin: admin,
     },
   });
-  res.json(result);
+  return result;
 };
 
-const deleteUsuario = async (req, res) => {
+const deleteUsuarioService = async (req) => {
   const id = parseInt(req.params.id);
   const result = await prisma.usuarios.delete({ where: { id: id } });
-  res.json(result);
+  return result;
 };
 
 module.exports = {
-  getUsuario,
-  createUsuario,
-  updateUsuario,
-  deleteUsuario,
+  getUsuarioService,
+  createUsuarioService,
+  updateUsuarioService,
+  deleteUsuarioService,
 };
