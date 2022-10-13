@@ -1,40 +1,22 @@
-const { PrismaClient } = require("@prisma/client");
+const zonaServices = require('../services/zona');
 
-const prisma = new PrismaClient();
-
-//id == 0 return all
 const getZona = async (req, res) => {
-  const id = parseInt(req.params.id);
-  let zonas;
-
-  id == 0
-    ? (zonas = await prisma.zonas.findMany())
-    : (zonas = await prisma.zonas.findUnique({ where: { id: id } }));
-  res.json(zonas);
+  const result = await zonaServices.getZonaService(req);
+  res.json(result);
 };
 
 const createZona = async (req, res) => {
-  const { nombre } = req.body;
-  const result = await prisma.zonas.create({
-    data: { nombre },
-  });
+  const result = await zonaServices.createZonaService(req);
   res.json(result);
 };
 
 const updateZona = async (req, res) => {
-  const id = parseInt(req.params.id);
-  const { nombre } = req.body;
-
-  const result = await prisma.zonas.update({
-    where: { id: id },
-    data: { nombre: nombre },
-  });
+  const result = await zonaServices.updateZonaService(req);
   res.json(result);
 };
 
 const deleteZona = async (req, res) => {
-  const id = parseInt(req.params.id);
-  const result = await prisma.zonas.delete({ where: { id: id } });
+  const result = await zonaServices.deleteZonaService(req);
   res.json(result);
 };
 
