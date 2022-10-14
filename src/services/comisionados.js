@@ -44,7 +44,7 @@ const updateComisionadosService = async (req) => {
 
 const deleteComisionadosService = async (req) => {
   const id = parseInt(req.params.id);
-  const result = prisma.comisionados.delete({ where: { id: id } });
+  const result = await prisma.comisionados.delete({ where: { id: id } });
   return result;
 };
 

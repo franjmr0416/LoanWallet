@@ -66,7 +66,11 @@ const updatePrestamosService = async (req) => {
   return result;
 };
 
-const deletePrestamosService = async (req) => {};
+const deletePrestamosService = async (req) => {
+  const id = parseInt(req.params.id);
+  const result = await prisma.prestamos.delete({ where: { id: id } });
+  return result;
+};
 
 module.exports = {
   getPrestamosService,
