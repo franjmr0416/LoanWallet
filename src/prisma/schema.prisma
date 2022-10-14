@@ -50,17 +50,18 @@ model Clientes {
 }
 
 model Prestamos {
-  id            Int             @id @default(autoincrement())
-  cliente       Clientes        @relation(fields: [clienteId], references: [id])
-  clienteId     Int
-  comisionado   Comisionados    @relation(fields: [comisionadoId], references: [id])
-  comisionadoId Int
-  freqPago      FrecuenciaPagos @relation(fields: [freqPagoId], references: [id])
-  freqPagoId    Int
-  monto         Float           @db.Double
-  interes       Float           @db.Double
-  saldo         Float           @db.Double
-  abonos        Abonos[]
+  id               Int             @id @default(autoincrement())
+  cliente          Clientes        @relation(fields: [clienteId], references: [id])
+  clienteId        Int
+  comisionado      Comisionados    @relation(fields: [comisionadoId], references: [id])
+  comisionadoId    Int
+  freqPago         FrecuenciaPagos @relation(fields: [freqPagoId], references: [id])
+  freqPagoId       Int
+  monto            Float           @db.Double
+  interes          Float           @db.Double
+  saldo            Float           @db.Double
+  abonos           Abonos[]
+  estatus_prestamo String
 }
 
 model Abonos {
