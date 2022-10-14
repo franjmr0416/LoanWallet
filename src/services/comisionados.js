@@ -14,20 +14,30 @@ const getComisionadosService = async (req) => {
 };
 
 const createComisionadosService = async (req) => {
-  const { usuarioId, zonaId } = req.body;
+  const usuario = parseInt(req.body.usuario);
+  const zona = parseInt(req.body.zona);
+
   const result = await prisma.comisionados.create({
-    data: { usuarioId, zonaId },
+    data: {
+      usuario: {
+        connect: { id: usuario },
+      },
+      zona: {
+        connect: { id: zona },
+      },
+    },
   });
   return result;
 };
 
 const updateComisionadosService = async (req) => {
   const id = parseInt(req.params.id);
-  const { usuarioId, zonaId } = req.body;
+  const usuario = parseInt(req.body.usuario);
+  const zona = parseInt(req.body.zona);
 
   const result = await prisma.comisionados.update({
     where: { id: id },
-    data: { usuarioId: usuarioId, zonaId: zonaId },
+    data: { usuarioId: usuario, zonaId: zona },
   });
   return result;
 };
