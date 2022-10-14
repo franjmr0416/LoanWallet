@@ -6,6 +6,7 @@ const app = express();
 const clienteRoutes = require('../src/routes/cliente');
 const usuarioRoutes = require('../src/routes/usuario');
 const zonaRoutes = require('../src/routes/zona');
+const comisionadosRoutes = require('../src/routes/comisionados');
 
 app.use(express.json());
 
@@ -17,6 +18,7 @@ app.get('/', (req, res) => {
 app.use(clienteRoutes);
 app.use(usuarioRoutes);
 app.use(zonaRoutes);
+app.use(comisionadosRoutes);
 
 const PORT = process.env.PORT || 3000;
 
