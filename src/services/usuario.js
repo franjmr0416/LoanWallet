@@ -1,5 +1,6 @@
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
+const encriptadoServices = require('../services/encriptado');
 
 //id == 0 return all
 const getUsuarioService = async (req) => {
@@ -14,8 +15,10 @@ const getUsuarioService = async (req) => {
 
 const createUsuarioService = async (req) => {
   const { nombre, telefono, email, password, admin } = req.body;
+  const hashPassword = await encriptadoServices.passEncryptService(password);
+
   const result = await prisma.usuarios.create({
-    data: { nombre, telefono, email, password, admin },
+    data: { nombre, telefono, email, password: hashPassword, admin },
   });
   return result;
 };
@@ -23,6 +26,7 @@ const createUsuarioService = async (req) => {
 const updateUsuarioService = async (req) => {
   const id = parseInt(req.params.id);
   const { nombre, telefono, email, password, admin } = req.body;
+  const hashPassword = await encriptadoServices.passEncryptService(password);
 
   const result = await prisma.usuarios.update({
     where: { id: id },
@@ -30,7 +34,7 @@ const updateUsuarioService = async (req) => {
       nombre: nombre,
       telefono: telefono,
       email: email,
-      password: password,
+      password: hashPassword,
       admin: admin,
     },
   });
