@@ -8,6 +8,7 @@ const usuarioRoutes = require('../src/routes/usuario');
 const zonaRoutes = require('../src/routes/zona');
 const comisionadosRoutes = require('../src/routes/comisionados');
 const prestamosRoutes = require('../src/routes/prestamos');
+const abonosRoutes = require('../src/routes/abonos');
 
 app.use(express.json());
 
@@ -21,6 +22,7 @@ app.use(usuarioRoutes);
 app.use(zonaRoutes);
 app.use(comisionadosRoutes);
 app.use(prestamosRoutes);
+app.use(abonosRoutes);
 
 const PORT = process.env.PORT || 3000;
 
