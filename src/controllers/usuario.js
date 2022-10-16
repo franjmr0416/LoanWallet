@@ -20,9 +20,15 @@ const deleteUsuario = async (req, res) => {
   res.json(result);
 };
 
+const loginUsuario = async (req, res) => {
+  const result = await usuarioServices.loginUsuarioService(req);
+  res.json(result);
+};
+
 module.exports = {
   getUsuario,
   createUsuario,
   updateUsuario,
   deleteUsuario,
+  loginUsuario,
 };

@@ -1,6 +1,7 @@
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 const encriptadoServices = require('../services/encriptado');
+const loginServices = require('../services/login');
 
 //id == 0 return all
 const getUsuarioService = async (req) => {
@@ -47,9 +48,16 @@ const deleteUsuarioService = async (req) => {
   return result;
 };
 
+const loginUsuarioService = async (req) => {
+  const { email, password } = req.body;
+  const result = await loginServices.authLogin(email, password);
+  return result;
+};
+
 module.exports = {
   getUsuarioService,
   createUsuarioService,
   updateUsuarioService,
   deleteUsuarioService,
+  loginUsuarioService,
 };

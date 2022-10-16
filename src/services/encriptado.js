@@ -7,8 +7,8 @@ const passEncryptService = async (password) => {
   return hash;
 };
 
-const passDecryptService = async (hashPassword) => {
-  const compare = await bcrypt.compare(hashPassword, SALT);
+const passDecryptService = async (password, encryptedPassword) => {
+  const compare = await bcrypt.compare(password, encryptedPassword);
   return compare;
 };
 
